@@ -1,0 +1,28 @@
+{
+  "files": [],
+  "compilerOptions": {
+    "verbatimModuleSyntax": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitOverride": true,
+    "useUnknownInCatchVariables": true,
+    "target": "ES2022",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "Decorators",
+      "WebWorker"
+    ]
+  },
+  "exclude": [
+    "./dist/*"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}
