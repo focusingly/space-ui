@@ -1,51 +1,29 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { AdminRoute } from "./routes/admin";
+import { ClientRoute } from "./routes/client";
+import { FallbackRoute } from "./routes/fallback";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   strict: true,
-  scrollBehavior: (_, _from, pos) => {
-    return (
-      pos || {
-        el: "#router-layout",
-        behavior: "smooth",
-        top: 0,
-        left: 0
-      }
-    );
-  },
+  sensitive: true,
   routes: [
     {
       path: "/",
-      name: "home",
       meta: {
         requireAuth: false,
         title: "Welcome Shalling Space"
       },
-      component: () => import("@/views/home")
+      redirect(_to) {
+        return {
+          name: "index",
+          path: "/index"
+        };
+      }
     },
-    {
-      path: "/article",
-      name: "article",
-      meta: {
-        title: "您正在阅读"
-      },
-
-      component: () => import("@/views/article")
-    },
-    {
-      path: "/about",
-      name: "about",
-      meta: {
-        title: "关于我"
-      },
-      component: () => import("@/views/about")
-    },
-    // No match route found
-    {
-      path: "/:pathMatch(.*)*",
-      name: "NotFound",
-      component: () => import("@/views/error")
-    }
+    ClientRoute,
+    AdminRoute,
+    FallbackRoute
   ]
 });
 

@@ -1,7 +1,8 @@
-import { Layout } from "@/views/layout";
-import { defineComponent, onBeforeMount } from "vue";
 import "./App.scss";
-import { useThemeStore } from "./stores/use-theme";
+
+import { Layout } from "@/views";
+import { defineComponent, onBeforeMount } from "vue";
+import { useThemeStore } from "@/stores/use-theme";
 
 export const App = defineComponent({
   setup: () => {

@@ -1,9 +1,10 @@
 import { router } from "@/router";
+import { ClientRoute } from "@/router/routes/client";
 import { useThemeStore } from "@/stores/use-theme";
 import { Icon } from "@iconify/vue";
 import { useCycleList } from "@vueuse/core";
 import { computed, defineComponent, watch } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 
 export const SiteHeader = defineComponent({
   name: "SiteHeader",
@@ -12,6 +13,9 @@ export const SiteHeader = defineComponent({
     const { state, next } = useCycleList(["auto", "dark", "light"] as const, {
       initialValue: themeStore.theme
     });
+    const routes = ClientRoute.children;
+    const route = useRoute();
+
     watch(state, (val) => {
       themeStore.theme = val;
     });
@@ -28,13 +32,6 @@ export const SiteHeader = defineComponent({
       }
     });
 
-    const links = router
-      .getRoutes()
-      .map((t) => {
-        return t.name;
-      })
-      .filter((t) => t != "NotFound");
-
     return () => (
       <header
         class={`w-full h-[70px] sticky top-0 flex items-center justify-between backdrop-blur-xl z-40 px-2`}
@@ -43,23 +40,12 @@ export const SiteHeader = defineComponent({
         }}
       >
         <nav class={"flex items-center gap-x-5"}>
-          {links.map((routeName) => (
-            <RouterLink
-              key={routeName}
-              style={{
-                "--underline-color": "rgb(128, 88, 240)"
-              }}
-              class={"text-zinc-700 dark:text-yellow-50 underline-anime"}
-              activeClass={`bg-indigo-300 p-1 py-[2px] rounded-md`}
-              to={{
-                name: routeName
-              }}
-            >
-              {routeName}
+          {routes?.map((t) => (
+            <RouterLink to={t.path} key={t.path}>
+              {t.name}
             </RouterLink>
           ))}
         </nav>
-
         <button onClick={() => next()} class={`rounded-lg border dark:text-zinc-400 select-none p-1`}>
           <Icon icon={icon.value} width={20} height={20} class={`select-none touch-none`} />
         </button>
