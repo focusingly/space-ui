@@ -1,4 +1,4 @@
-import { DarkNoise, getSystemTheme, LightNoise } from "@/conf/color-design";
+import { getSystemTheme } from "@/conf/color-design";
 import { defineStore } from "pinia";
 import { computed, ref, watch } from "vue";
 import { StoreID } from "./store-id";
@@ -8,17 +8,6 @@ export const useThemeStore = defineStore(
   () => {
     const styleEl = document.createElement("style");
     styleEl.setAttribute("type", "text/css");
-    styleEl.innerText = /* css */ `
-      :root {
-        --dark-bg-noise: url(${DarkNoise});
-        --light-bg-noise: url(${LightNoise});
-        --theme-bg-noise: var(--light-bg-noise);
-      }
-      body.dark {
-        --theme-bg-noise: var(--dark-bg-noise);
-      }
-    `.trim();
-    document.head.appendChild(styleEl);
 
     const theme = ref<"auto" | "light" | "dark">("auto");
     const shouldUseTheme = computed(() => {

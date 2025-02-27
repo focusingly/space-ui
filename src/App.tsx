@@ -18,3 +18,5 @@ export const App = defineComponent({
     return () => <Layout />;
   }
 });
+
+export default App;

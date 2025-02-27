@@ -75,7 +75,7 @@ export const colorStringToRgb = (color: string): [number, number, number] | null
     const l = parseInt(hslMatch[3], 10) / 100;
     // HSL 转 RGB
     const r = hslToRgb(h, s, l);
-    return [Math.round(r[0] * 255), Math.round(r[1] * 255), Math.round(r[2] * 255)];
+    return [(r[0] * 255) | 0, (r[1] * 255) | 0, (r[2] * 255) | 0];
   }
   // 匹配 Hex 格式，如 #fff 或 #ffffff
   const hexRegex = /^#([0-9a-f]{3}){1,2}$/;
@@ -88,9 +88,9 @@ export const colorStringToRgb = (color: string): [number, number, number] | null
         .map((c) => c + c)
         .join(""); // 将 #fff 转为 #ffffff
     }
-    const r = parseInt(hex.substr(0, 2), 16);
-    const g = parseInt(hex.substr(2, 2), 16);
-    const b = parseInt(hex.substr(4, 2), 16);
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 2), 16);
+    const b = parseInt(hex.substring(4, 2), 16);
 
     return [r, g, b];
   }
