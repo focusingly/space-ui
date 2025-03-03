@@ -12,10 +12,7 @@
       "webRoot": "${workspaceFolder}",
       "showAsyncStacks": true,
       "sourceMaps": true,
-      "skipFiles": [
-        "**/node_modules/**",
-        "**/@id/**"
-      ]
+      "skipFiles": ["**/node_modules/**", "**/@id/**"]
     }
   ]
 }
