@@ -1,46 +1,196 @@
-import { defineComponent } from "vue";
+import { NLayout, NLayoutFooter, NLayoutHeader, NLayoutSider, NMenu } from "naive-ui";
 
+import {
+  AddRound,
+  CheckRound,
+  CloudRound,
+  CodeRound,
+  CommentBankTwotone,
+  DesktopMacRound,
+  EmailRound,
+  FilePresentRound,
+  LinkRound,
+  MenuBookRound,
+  MonitorHeartRound,
+  NetworkWifiRound,
+  PostAddTwotone,
+  QueryStatsRound,
+  SentimentSatisfiedTwotone,
+  SpaceDashboardRound,
+  TagRound,
+  TaskRound,
+  VerifiedUserRound
+} from "@vicons/material";
+import type { MenuMixedOption } from "naive-ui/es/menu/src/interface";
+import { defineComponent } from "vue";
 export const AdminDashboard = defineComponent({
   name: "AdminDashboard",
   setup() {
+    const menuOptions: MenuMixedOption[] = [
+      {
+        label: "控制台",
+        key: "dashboard",
+        icon: () => <SpaceDashboardRound />
+      },
+      {
+        label: "文章管理",
+        key: "post",
+        icon: () => <PostAddTwotone />,
+        children: [
+          {
+            label: "文章列表",
+            key: "post-list"
+          },
+          {
+            label: "添加文章",
+            key: "add-post"
+          }
+        ]
+      },
+      {
+        label: "标签管理",
+        key: "tags",
+        icon: () => <TagRound />
+      },
+      {
+        label: "评论管理",
+        key: "comment",
+        icon: () => <CommentBankTwotone />
+      },
+      {
+        label: "用户管理",
+        key: "user",
+        icon: () => <VerifiedUserRound />,
+        children: [
+          {
+            label: "登录会话",
+            key: "login-sessions"
+          },
+          {
+            label: "用户操作",
+            key: "user-detail"
+          }
+        ]
+      },
+      {
+        label: "菜单管理",
+        key: "menu",
+        icon: () => <MenuBookRound />
+      },
+      {
+        label: "文件管理",
+        key: "file",
+        icon: () => <FilePresentRound />,
+        children: [
+          {
+            label: "本地文件",
+            key: "local-file",
+            icon: () => <DesktopMacRound />
+          },
+          {
+            label: "S3 文件",
+            key: "s3-file",
+            icon: () => <CloudRound />
+          }
+        ]
+      },
+      {
+        label: "友链管理",
+        key: "friend-link",
+        icon: () => <LinkRound />
+      },
+      {
+        label: "独立访问用户",
+        key: "uv",
+        icon: () => <QueryStatsRound />
+      },
+      {
+        label: "IP 管理",
+        key: "ip",
+        icon: () => <NetworkWifiRound />
+      },
+      {
+        label: "邮件管理",
+        key: "email",
+        icon: () => <EmailRound />,
+        children: [
+          {
+            label: "已注册",
+            key: "email-list",
+            icon: () => <CheckRound />
+          },
+          {
+            label: "写邮件",
+            key: "write-email",
+            icon: () => <AddRound />
+          }
+        ]
+      },
+      {
+        label: "系统监控",
+        key: "monitor",
+        icon: () => <MonitorHeartRound />
+      },
+      {
+        label: "定时任务",
+        key: "timing-task",
+        icon: () => <TaskRound />,
+        children: [
+          {
+            label: "已注册",
+            key: "registered-task"
+          },
+          {
+            label: "状态",
+            key: "task-status"
+          }
+        ]
+      },
+      {
+        label: "日志管理",
+        key: "logs",
+        icon: () => <CodeRound />,
+        children: [
+          {
+            label: "浏览",
+            key: "log-visit"
+          },
+          {
+            label: "导出",
+            key: "log-export"
+          }
+        ]
+      }
+    ];
+
     return () => (
-      <div class={`w-full h-full`}>
-        <div class="flex flex-col h-full">
-          <header class="bg-gray-800 text-white p-4">
-            <h1 class="text-xl">Admin Dashboard</h1>
-          </header>
-          <div class="flex flex-1">
-            <aside class="w-64 bg-gray-700 text-white p-4">
-              <nav>
-                <ul>
-                  <li class="mb-2">
-                    <a href="#" class="hover:underline">
-                      Dashboard
-                    </a>
-                  </li>
-                  <li class="mb-2">
-                    <a href="#" class="hover:underline">
-                      Users
-                    </a>
-                  </li>
-                  <li class="mb-2">
-                    <a href="#" class="hover:underline">
-                      Settings
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </aside>
-            <main class="flex-1 bg-gray-100 p-4">
-              <div class="bg-white p-6 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-4">Welcome to the Admin Dashboard</h2>
-                <p class="text-gray-700">This is where you can manage your application.</p>
-              </div>
-            </main>
-          </div>
-          <footer class="bg-gray-800 text-white p-4 text-center">&copy; 2023 Your Company</footer>
-        </div>
-      </div>
+      <NLayout class={`w-full h-full bg-transparent`}>
+        <NLayoutHeader class={`h-[45px]`}>SHALLING ADMIN</NLayoutHeader>
+        <NLayout hasSider={true} class={`h-[calc(100%-100px)]`} siderPlacement={"left"}>
+          <NLayoutSider
+            nativeScrollbar={false}
+            bordered={true}
+            showTrigger={false}
+            collapseMode={"width"}
+            collapsedWidth={50}
+            width={240}
+            inverted={true}
+          >
+            <NMenu
+              defaultValue={"local-file"}
+              inverted={true}
+              collapsedWidth={50}
+              collapsedIconSize={22}
+              options={menuOptions}
+              class={`select-none`}
+              onUpdateValue={(val) => {
+                console.log(val);
+              }}
+            />
+          </NLayoutSider>
+        </NLayout>
+        <NLayoutFooter class={`h-[55px]`}>Footer</NLayoutFooter>
+      </NLayout>
     );
   }
 });

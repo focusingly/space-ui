@@ -1,3 +1,4 @@
+import { dateZhCN, NConfigProvider, zhCN } from "naive-ui";
 import { defineComponent, KeepAlive, Transition, type VNode } from "vue";
 import { RouterView, type RouteLocationNormalizedLoaded } from "vue-router";
 
@@ -5,7 +6,7 @@ export const AdminView = defineComponent({
   name: "AdminView",
   setup() {
     return () => (
-      <div class={`w-full h-full bg-white`}>
+      <NConfigProvider locale={zhCN} dateLocale={dateZhCN} class={`w-full h-full`}>
         <RouterView
           class={`w-full h-fit relative`}
           v-slots={{
@@ -16,7 +17,7 @@ export const AdminView = defineComponent({
             )
           }}
         />
-      </div>
+      </NConfigProvider>
     );
   }
 });
