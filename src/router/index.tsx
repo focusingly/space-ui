@@ -46,7 +46,7 @@ window.addEventListener("visibilitychange", (evt) => {
     favicon.href = "/leave.svg";
     document.title = "...非活跃状态";
   } else {
-    favicon.href = "/favicon.ico";
+    favicon.href = "/favicon.svg";
     document.title = meta.title;
   }
 });
