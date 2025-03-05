@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { AdminRoute } from "./routes/admin";
+import { AdminRoute } from "@/admin/route";
 import { ClientRoute } from "./routes/client";
 import { FallbackRoute } from "./routes/fallback";
 
@@ -34,20 +34,6 @@ router.afterEach((to, from, failure) => {
   if (to.meta.title) {
     document.title = to.meta.title;
     meta.title = to.meta.title;
-  }
-});
-
-window.addEventListener("visibilitychange", (evt) => {
-  const favicon = document.querySelector<HTMLLinkElement>("link[rel='icon']");
-  if (!favicon) {
-    return;
-  }
-  if (document.hidden) {
-    favicon.href = "/leave.svg";
-    document.title = "...非活跃状态";
-  } else {
-    favicon.href = "/favicon.svg";
-    document.title = meta.title;
   }
 });
 

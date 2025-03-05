@@ -1,4 +1,5 @@
 export const enum StoreID {
   TokenStore = "TokenStore",
-  ThemeStore = "ThemeStore"
+  ThemeStore = "ThemeStore",
+  RouteTabStore = "RouteTabStore"
 }

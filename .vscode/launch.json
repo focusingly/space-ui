@@ -8,7 +8,7 @@
       "type": "chrome",
       "request": "launch",
       "name": "Debug Vite Program",
-      "url": "http://localhost:8088",
+      "url": "http://localhost:9033",
       "webRoot": "${workspaceFolder}",
       "showAsyncStacks": true,
       "sourceMaps": true,

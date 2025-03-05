@@ -1,6 +1,11 @@
 import "reset-css";
 /* set order mark */
 import "@/assets/main.scss";
+// 通用字体
+import "vfonts/Lato.css";
+// 等宽字体
+import "vfonts/FiraCode.css";
+
 import "@/conf/init";
 
 import { DarkMode, LightMode } from "@/conf/color-design";
