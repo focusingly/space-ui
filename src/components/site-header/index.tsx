@@ -1,10 +1,9 @@
-import { router } from "@/router";
 import { ClientRoute } from "@/router/routes/client";
 import { useThemeStore } from "@/stores/use-theme";
 import { Icon } from "@iconify/vue";
 import { useCycleList } from "@vueuse/core";
 import { computed, defineComponent, watch } from "vue";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink } from "vue-router";
 
 export const SiteHeader = defineComponent({
   name: "SiteHeader",
@@ -14,8 +13,6 @@ export const SiteHeader = defineComponent({
       initialValue: themeStore.theme
     });
     const routes = ClientRoute.children;
-    const route = useRoute();
-
     watch(state, (val) => {
       themeStore.theme = val;
     });
